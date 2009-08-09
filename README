@@ -1,13 +1,37 @@
 PasswordStrengthMeter
 =====================
 
-Introduction goes here.
+PasswordStrengthMeter is a simple prototype-based plugin to measure the strength of a password. It's inteneded to provide an indicator on
+the strength of a password, but it's not a predicating how strong the password really is.
+The purpose of this plugin it to provide an indicator, similar to the indicators on the GMail or Yahoo Mail sign up form, to prevent users from entering too simple passwords like "love" or "money" and to get them to use more complex passwords. 
 
+Usage
+=====
+
+  password_strength_meter :name, :target, :strength_words, :bar_width
+  
+  :name - name of the password_strength_meter instance
+  :target - the id of the password_field you want to use it for
+  :strength_words (optional) - replace the default words, which are used to describe the strength of as password, with your own, e.g. with smileys :strength_words => [':-(', ':-(', ':-|', ':-)', ':-D']
+  :bar_width (optional) - change the width of the indicator bar, e.g. :bar_width => '350px'
 
 Example
 =======
 
-Example goes here.
+Add the following code into your layout:
+
+ <%= stylesheet_link_tag 'password_strength_meter.css' %>
+
+Add the following code into a view of your choice, e.g. sign up form:
+
+  <%= f.password_field :sign_up_password %><br />
+  <%= password_strength_meter :sign_up_password_meter, :sign_up_password %>
+
+
+Installation
+============
+
+  ruby script/plugin install git://github.com/frane/password_strength_meter.git
 
 
 Copyright (c) 2009 Frane Bandov, released under the MIT license
