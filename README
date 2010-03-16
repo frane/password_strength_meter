@@ -31,7 +31,7 @@ Add the following code into a view of your choice, e.g. sign up form:
 Installation
 ============
 
-  ruby script/plugin install git://github.com/frane/password_strength_meter.git
+  ruby script/plugin install git://github.com/onomojo/password_strength_meter.git
 
 
 Contributors
