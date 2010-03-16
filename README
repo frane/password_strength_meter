@@ -34,4 +34,10 @@ Installation
   ruby script/plugin install git://github.com/frane/password_strength_meter.git
 
 
+Contributors
+============
+
+Brian McQuay of Onomojo - http://www.onomojo.com
+
+
 Copyright (c) 2009 Frane Bandov, released under the MIT license

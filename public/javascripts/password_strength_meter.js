@@ -1,45 +1,79 @@
-var strength_words = ["very weak", "weak", "medium", "strong", "stronger"]
-
 function check_password_strength(target, name) 
 {
 	var score = test_password($(target).value);
 	var percent = (score / 50) * 100;
-	$(name + '_bar').setStyle({width: percent+'%'});
-	if(score < 16)
+
+	if(score == 0)
 	{
-	   $(name + '_bar_text').innerHTML = strength_words[0];
+		$(name + '_bar').addClassName('pws_empty');
+		$(name + '_bar').removeClassName('pws_bad');
+		$(name + '_bar').removeClassName('pws_weakest');
+		$(name + '_bar').removeClassName('pws_weak');
+		$(name + '_bar').removeClassName('pws_medium');
+		$(name + '_bar').removeClassName('pws_strong');
+		$(name + '_bar').removeClassName('pws_strongest');
+		
+	}
+	else if(score < 10)
+	{
+		$(name + '_bar').removeClassName('pws_empty');
+		$(name + '_bar').addClassName('pws_bad');
+		$(name + '_bar').removeClassName('pws_weakest');
+		$(name + '_bar').removeClassName('pws_weak');
+		$(name + '_bar').removeClassName('pws_medium');
+		$(name + '_bar').removeClassName('pws_strong');
+		$(name + '_bar').removeClassName('pws_strongest');
+	}
+	else if(score > 10 && score < 16)
+	{
+		$(name + '_bar').removeClassName('pws_empty');
+		$(name + '_bar').removeClassName('pws_bad');
+		$(name + '_bar').addClassName('pws_weakest');
+		$(name + '_bar').removeClassName('pws_weak');
+		$(name + '_bar').removeClassName('pws_medium');
+		$(name + '_bar').removeClassName('pws_strong');
+		$(name + '_bar').removeClassName('pws_strongest');
 	}
 	else if (score > 15 && score < 25)
 	{
-	   $(name + '_bar_text').innerHTML = strength_words[1];
-	}
-	else if (score > 24 && score < 35)
-	{
-	   $(name + '_bar_text').innerHTML = strength_words[2];
-	}
-	else if (score > 34 && score < 45)
-	{
-	   $(name + '_bar_text').innerHTML = strength_words[3];
-	}
-	else
-	{
-	   $(name + '_bar_text').innerHTML = strength_words[4];
-	}
-
-	if(score > 34) {
-		$(name + '_bar').addClassName('pws_strong');
-		$(name + '_bar').removeClassName('pws_medium');
-		$(name + '_bar').removeClassName('pws_weak');
-	} else if(score > 24 && score < 35) {
-		$(name + '_bar').addClassName('pws_medium');
-		$(name + '_bar').removeClassName('pws_strong');
-		$(name + '_bar').removeClassName('pws_weak');
-	} else {
+		$(name + '_bar').removeClassName('pws_empty');
+		$(name + '_bar').removeClassName('pws_bad');
+		$(name + '_bar').removeClassName('pws_weakest');
 		$(name + '_bar').addClassName('pws_weak');
 		$(name + '_bar').removeClassName('pws_medium');
 		$(name + '_bar').removeClassName('pws_strong');
+		$(name + '_bar').removeClassName('pws_strongest');
 	}
-	
+	else if (score > 24 && score < 35)
+	{
+		$(name + '_bar').removeClassName('pws_empty');
+		$(name + '_bar').removeClassName('pws_bad');
+		$(name + '_bar').removeClassName('pws_weakest');
+		$(name + '_bar').removeClassName('pws_weak');
+		$(name + '_bar').addClassName('pws_medium');
+		$(name + '_bar').removeClassName('pws_strong');
+		$(name + '_bar').removeClassName('pws_strongest');
+	}
+	else if (score > 34 && score < 45)
+	{
+		$(name + '_bar').removeClassName('pws_empty');
+		$(name + '_bar').removeClassName('pws_bad');
+		$(name + '_bar').removeClassName('pws_weakest');
+		$(name + '_bar').removeClassName('pws_weak');
+		$(name + '_bar').removeClassName('pws_medium');
+		$(name + '_bar').addClassName('pws_strong');
+		$(name + '_bar').removeClassName('pws_strongest');
+	}
+	else
+	{
+		$(name + '_bar').removeClassName('pws_empty');
+		$(name + '_bar').removeClassName('pws_bad');
+		$(name + '_bar').removeClassName('pws_weakest');
+		$(name + '_bar').removeClassName('pws_weak');
+		$(name + '_bar').removeClassName('pws_medium');
+		$(name + '_bar').removeClassName('pws_strong');
+		$(name + '_bar').addClassName('pws_strongest');
+	}
 }
 
 function test_password(password)
